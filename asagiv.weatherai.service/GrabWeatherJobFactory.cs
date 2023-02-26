@@ -3,7 +3,7 @@ using Quartz.Spi;
 
 namespace asagiv.weatherai.service
 {
-    public class JobFactory : IJobFactory
+    public class GrabWeatherJobFactory : IJobFactory
     {
         #region Fields
         private readonly WeatherDataApiClient _weatherDataApiClient;
@@ -11,7 +11,7 @@ namespace asagiv.weatherai.service
         #endregion
 
         #region Constructor
-        public JobFactory(WeatherDataApiClient weatherDataApiClient, WeatherDataRepository weatherDataCollection)
+        public GrabWeatherJobFactory(WeatherDataApiClient weatherDataApiClient, WeatherDataRepository weatherDataCollection)
         {
             _weatherDataApiClient = weatherDataApiClient;
             _weatherDataRepository = weatherDataCollection;
