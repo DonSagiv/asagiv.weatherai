@@ -17,6 +17,14 @@ namespace asagiv.weatherai.service
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            var quitEvent = new ManualResetEvent(false);
+
+            Console.CancelKeyPress += (s, e) =>
+            {
+                quitEvent.Set();
+                e.Cancel = true;
+            };
+
             var factory = new StdSchedulerFactory();
             var scheduler = await factory.GetScheduler();
             await scheduler.Start(stoppingToken);
@@ -34,10 +42,9 @@ namespace asagiv.weatherai.service
 
             await scheduler.ScheduleJob(job, trigger, stoppingToken);
 
-            while (!stoppingToken.IsCancellationRequested)
-            {
-                await Task.Delay(1000, stoppingToken);
-            }
+            quitEvent.WaitOne();
+
+            await scheduler.Shutdown(false);
         }
     }
 }
