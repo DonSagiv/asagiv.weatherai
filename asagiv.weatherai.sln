@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "asagiv.weatherai", "asagiv.weatherai\asagiv.weatherai.csproj", "{BEC75C17-F846-40E1-A1E7-81D02555314B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "asagiv.weatherai.service", "asagiv.weatherai.service\asagiv.weatherai.service.csproj", "{DF4DFFDB-0632-4BE5-ACE9-3BF54143676A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BEC75C17-F846-40E1-A1E7-81D02555314B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BEC75C17-F846-40E1-A1E7-81D02555314B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BEC75C17-F846-40E1-A1E7-81D02555314B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BEC75C17-F846-40E1-A1E7-81D02555314B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF4DFFDB-0632-4BE5-ACE9-3BF54143676A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF4DFFDB-0632-4BE5-ACE9-3BF54143676A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF4DFFDB-0632-4BE5-ACE9-3BF54143676A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF4DFFDB-0632-4BE5-ACE9-3BF54143676A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
