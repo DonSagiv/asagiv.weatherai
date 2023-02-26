@@ -1,26 +1,38 @@
+using Quartz;
+using Quartz.Impl;
+using Quartz.Spi;
+
 namespace asagiv.weatherai.service
 {
     public class Worker : BackgroundService
     {
         #region Fields
-        private readonly WeatherDataApiClient _weatherDataApiClient;
-        private readonly WeatherDataRepository _weatherDataRepository;
+        private readonly IJobFactory _jobFactory;
         #endregion
 
-        public Worker(WeatherDataApiClient weatherDataApiClient, WeatherDataRepository weatherDataCollection)
+        public Worker(JobFactory jobFactory)
         {
-            _weatherDataApiClient = weatherDataApiClient;
-            _weatherDataRepository = weatherDataCollection;
+            _jobFactory = jobFactory;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            var weatherData = await _weatherDataApiClient.RequestCurrentWeatherAsync();
+            var factory = new StdSchedulerFactory();
+            var scheduler = await factory.GetScheduler();
+            await scheduler.Start(stoppingToken);
 
-            if (weatherData != null)
-            {
-                await _weatherDataRepository.InsertWeatherDataAsync(weatherData);
-            }
+            scheduler.JobFactory = _jobFactory;
+
+            var job = JobBuilder.Create<GrabWeatherJob>()
+                .WithIdentity("grabWeatherJob", "asagiv")
+                .Build();
+
+            var trigger = TriggerBuilder.Create()
+                .WithIdentity("grabWeatherTrigger", "asagiv")
+                .WithCronSchedule("0 5 * * * ?")
+                .Build();
+
+            await scheduler.ScheduleJob(job, trigger, stoppingToken);
 
             while (!stoppingToken.IsCancellationRequested)
             {

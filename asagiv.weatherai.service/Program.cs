@@ -6,6 +6,7 @@ IHost host = Host.CreateDefaultBuilder(args)
         services.AddHostedService<Worker>();
         services.AddSingleton<WeatherDataRepository>();
         services.AddSingleton<WeatherDataApiClient>();
+        services.AddSingleton<JobFactory>();
     })
     .Build();
 
